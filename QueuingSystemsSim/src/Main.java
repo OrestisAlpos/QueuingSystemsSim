@@ -2,11 +2,14 @@
 public class Main {
 
 	private static int K, l, m_a=4, m_b=1;
-	private static int N=10, losses=0, totalClients=0, totalClientsServedByA = 0, totalClientsServedByB = 0,totalClientsInSystem = 0, reps = 0;
+	private static int N=10, losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0,totalClientsInSystem = 0, reps = 0;
 	static State[][] states;
 	
 	
 	public static void main(String[] args) {
+		
+		K=3;
+		l=1;
 		
 		// State-matrix initialization. We use the state-matrix states to track events in each state.
 		int i;
@@ -49,7 +52,7 @@ public class Main {
 			//First case: The event was a new arrival
 			if (event == 0) {	
 				states[currentState_i][currentState_j].arrivalCount++;
-				totalClients++;
+				totalArrivals++;
 				if (currentState_i == 10){
 					losses++;
 				} else {
