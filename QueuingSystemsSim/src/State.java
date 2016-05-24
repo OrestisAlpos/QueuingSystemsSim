@@ -4,6 +4,7 @@ public class State {
 	public int arrivalCount;
 	public int clientsServedByA, clientsServedByB;
 	public String name;
+	public double prob;
 	
 	public State(String name) {
 		this.arrivalCount = 0;
