@@ -1,10 +1,14 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 
 public class Main {
 
 	private static int m_a=4, m_b=1, N=10, losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0;
 	private static double averageClients = 0, averageClients_aux = 0;
 	static State[][] states;
-	
+	static String outString = new String();
 	
 	public static void main(String[] args) {
 		
@@ -83,7 +87,7 @@ public class Main {
 				}
 				
 				reps++;
-			}//while(reps<00)
+			}//while(reps<1000)
 			
 			//UPDATE THE ERGODIC PROBABILITY OF EACH STATE (Pi, for i=0..10)
 			states[0][0].prob = states[0][0].arrivalCount / (double)totalArrivals;
@@ -107,12 +111,26 @@ public class Main {
 				//System.out.print(states[i][0].prob + " " );
 				averageClients += i * states[i][0].prob;
 			}
+			outString = outString.concat("\n" + averageClients);
 			
-			System.out.println(Double.toString(averageClients));
+			//System.out.print(averageClients + " " );
 			if ((averageClients < 1.001 * averageClients_aux) && (averageClients > 0.999 * averageClients_aux)) {
 				break;
 			}
+			
 		}//while(true)
+		
+		System.out.println(outString);
+		//Output will be written to a file.
+		PrintWriter writer;
+		try { writer = new PrintWriter("result_L" + l + "_K" + K + ".txt", "UTF-8");
+			  writer.println(outString);
+			  writer.close();
+			} catch (UnsupportedEncodingException e) {
+				System.err.println("Unable to write to file: " + e.getMessage());
+			} catch (FileNotFoundException e) {
+				System.err.println("Unable to write to file: " + e.getMessage());
+		}
 		
 	}
 }
