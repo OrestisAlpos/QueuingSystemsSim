@@ -103,27 +103,20 @@ public class Main {
 			averageClients_aux = averageClients;
 			averageClients = 0;
 			for (i=1; i<=K; i++){
-				//System.out.print(states[i][0].prob + " " );
-				//System.out.print(states[i][1].prob + " " );
 				averageClients += i * states[i][0].prob;
 				averageClients += i * states[i][1].prob;		}
 			for (i=K+1; i<=N; i++){
-				//System.out.print(states[i][0].prob + " " );
 				averageClients += i * states[i][0].prob;
 			}
 			outString = outString.concat("\n" + averageClients);
 			
-			//System.out.print(averageClients + " " );
 			if ((averageClients < 1.001 * averageClients_aux) && (averageClients > 0.999 * averageClients_aux)) {
 				break;
 			}
 			
 		}//while(true)
 		
-		System.out.println(outString);
-		//Output will be written to a file.
-		PrintWriter writer;
-		try { writer = new PrintWriter("result_L" + l + "_K" + K + ".txt", "UTF-8");
+		try { PrintWriter writer = new PrintWriter("result_L" + l + "_K" + K + ".txt", "UTF-8");
 			  writer.println(outString);
 			  writer.close();
 			} catch (UnsupportedEncodingException e) {
