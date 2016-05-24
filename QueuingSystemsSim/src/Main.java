@@ -7,14 +7,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		int l= Integer.parseInt(args[0]);
 		int K, m_a=4, m_b=1, N=10;
+		String outString = new String();
 		for (K=1; K<=10; K++) {
 		
 			int losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0;
 			double averageClients = 0, averageClients_aux = 0;
-			State[][] states;
-			String outString = new String();
-			int l= Integer.parseInt(args[0]);	
+			State[][] states;	
+			outString = outString.concat("\nL=" + l + " K=" + K + "\n");
 			
 			// STATES INITIALIZATION. WE USE A STATE-ARRAY TO INDEX EACH POSSIBLE STATE
 			int i;
@@ -110,26 +111,26 @@ public class Main {
 				for (i=K+1; i<=N; i++){
 					averageClients += i * states[i][0].prob;
 				}
-				outString = outString.concat("\n" + averageClients);
+				outString = outString.concat(averageClients + ", ");
 				
 				if ((averageClients < 1.001 * averageClients_aux) && (averageClients > 0.999 * averageClients_aux)) {
 					break;
 				}
 				
 			}//while(true)
-			
-			//OUTPUT RESULTS TO A TXT FILE
-			try { PrintWriter writer = new PrintWriter("result_L" + l + "_K" + K + ".txt", "UTF-8");
-				  writer.println(outString);
-				  writer.close();
-				} catch (UnsupportedEncodingException e) {
-					System.err.println("Unable to write to file: " + e.getMessage());
-				} catch (FileNotFoundException e) {
-					System.err.println("Unable to write to file: " + e.getMessage());
-			}
-			
 	
 		}//for	
+		
+		//OUTPUT RESULTS TO A CSV FILE
+		try { PrintWriter writer = new PrintWriter("result_L" + l + ".csv", "UTF-8");
+			  writer.println(outString);
+			  writer.close();
+			} catch (UnsupportedEncodingException e) {
+				System.err.println("Unable to write to file: " + e.getMessage());
+			} catch (FileNotFoundException e) {
+				System.err.println("Unable to write to file: " + e.getMessage());
+		}
+		
 	}
 }
 	
