@@ -8,10 +8,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		int K=10;
-		int l=1;
+		int l= Integer.parseInt(args[0]);
+		int K= Integer.parseInt(args[1]);
 		
-		// State-matrix initialization. We use the state-matrix states to track events in each state.
+		// State-matrix initialization. We use the state-matrix to track events in each state.
 		int i;
 		states = new State[N+1][2];
 		states[0][0] = new State("" + 0);
