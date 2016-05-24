@@ -5,12 +5,12 @@ import java.io.UnsupportedEncodingException;
 
 public class Main {
 
-	private static int m_a=4, m_b=1, N=10, losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0;
-	private static double averageClients = 0, averageClients_aux = 0;
-	static State[][] states;
-	static String outString = new String();
-	
 	public static void main(String[] args) {
+		
+		int m_a=4, m_b=1, N=10, losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0;
+		double averageClients = 0, averageClients_aux = 0;
+		State[][] states;
+		String outString = new String();
 		
 		int l= Integer.parseInt(args[0]);
 		int K= Integer.parseInt(args[1]);
