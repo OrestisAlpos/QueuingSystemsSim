@@ -43,7 +43,7 @@ public class Main {
 			while(true) {
 				
 				iter++;
-				while (reps < 1000 * iter) {
+				while (reps < 10000 * iter) {
 				
 					// NEW RANDOM EVENT
 					
@@ -95,7 +95,7 @@ public class Main {
 					}
 					
 					reps++;
-				}//while(reps<1000)
+				}//while(reps<10000)
 				
 				//UPDATE THE ERGODIC PROBABILITY OF EACH STATE (Pi, for i=0..10)
 				states[0][0].prob = states[0][0].arrivalCount / (double)totalArrivals;
@@ -118,7 +118,7 @@ public class Main {
 				}
 				outString = outString.concat(averageClients + ", ");
 				
-				if ((averageClients < 1.001 * averageClients_aux) && (averageClients > 0.999 * averageClients_aux)) {
+				if ((averageClients < 1.0001 * averageClients_aux) && (averageClients > 0.9999 * averageClients_aux)) {
 					break;
 				}
 				
