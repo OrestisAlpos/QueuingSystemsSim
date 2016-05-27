@@ -11,8 +11,7 @@ public class State {
 		this.clientsServedByA = 0;
 		this.clientsServedByB = 0;
 		this.name = name;
-	}
-	
-	
+	}	
 	
 }
+
