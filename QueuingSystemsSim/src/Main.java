@@ -12,7 +12,7 @@ public class Main {
 		String outString = new String();
 		String throughputString = new String();
 		
-		for (K=1; K<=10; K++) {
+		for (K=1; K<=9; K++) {
 		
 			//METRICS INITIALIZATION
 			int losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0, event;
@@ -124,12 +124,12 @@ public class Main {
 				
 			}//while(true)
 	
+			
 			throughput_a = l * (1 - states[10][0].prob) * (double)totalClientsServedByA/totalArrivals;
 			throughput_b = l * (1 - (double)losses/totalArrivals) * (double)totalClientsServedByB/totalArrivals;
 			throughputString = throughputString.concat(throughput_a + "," + throughput_b + "," + throughput_a/throughput_b + "\n");
 					
-			
-		}//for (K=1; K<=10; K++)
+		}//for (K=1; K<=9; K++)
 		
 		//OUTPUT RESULTS TO A CSV FILE
 		try { PrintWriter writer = new PrintWriter("result_L" + l + ".csv", "UTF-8");
