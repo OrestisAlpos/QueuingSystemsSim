@@ -16,7 +16,7 @@ public class Main {
 		
 			//METRICS INITIALIZATION
 			int losses=0, totalArrivals=0, totalClientsServedByA = 0, totalClientsServedByB = 0, reps = 0, iter = 0, event;
-			double averageClients = 0, averageClients_aux = 0, throughput_a, throughput_b;
+			double averageClients = 0, averageClients_aux = 0, throughput_a, throughput_b, throughput_tot;
 			State[][] states;	
 			
 			//OUTPUT STRING INITIALIZATION
@@ -124,9 +124,11 @@ public class Main {
 				
 			}//while(true)
 	
-			
-			throughput_a = l * (1 - states[10][0].prob) * (double)totalClientsServedByA/totalArrivals;
-			throughput_b = l * (1 - (double)losses/totalArrivals) * (double)totalClientsServedByB/totalArrivals;
+			throughput_tot = l * (1 - states[0][0].prob);
+			throughput_a = m_a * (1 - states[0][0].prob - states[1][1].prob);
+			throughput_b = throughput_tot - throughput_a;
+			//throughput_a = l * (1 - states[10][0].prob) * (double)totalClientsServedByA/totalArrivals;			//alternative formula
+			//throughput_b = l * (1 - (double)losses/totalArrivals) * (double)totalClientsServedByB/totalArrivals;	//alternative formula
 			throughputString = throughputString.concat(throughput_a + "," + throughput_b + "," + throughput_a/throughput_b + "\n");
 					
 		}//for (K=1; K<=9; K++)
